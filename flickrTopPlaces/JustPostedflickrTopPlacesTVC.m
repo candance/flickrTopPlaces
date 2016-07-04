@@ -33,26 +33,36 @@
                                                                         options:0
                                                                           error:NULL];
     
-    NSLog(@"Places Results:%@", placesResults);
+    // NSLog(@"Places Results:%@", placesResults);
     
     NSDictionary *places = [placesResults valueForKeyPath:FLICKR_RESULTS_PLACES];
 
     NSArray *placesFullNames = [places valueForKey:FLICKR_PLACE_NAME];
     
-    self.places = [self createArrayForEachCountry:[self createFlickrPlacesArrayWithStringArray:placesFullNames]];
+    NSArray *placesID = [places valueForKey:FLICKR_PLACE_ID];
+    
+    self.places = [self createArrayForEachCountry:[self createFlickrPlacesArrayWithStringArray:placesFullNames withPlaceId:placesID]];
 }
 
-- (NSArray *)createFlickrPlacesArrayWithStringArray:(NSArray *)stringArray {
+- (NSArray *)createFlickrPlacesArrayWithStringArray:(NSArray *)stringArray withPlaceId:(NSArray *)idArray {
     
     NSMutableArray<FlickrPlace *> *parsedPlaces = [[NSMutableArray alloc] init];
+    int i = 0;
     
     for (NSString *place in stringArray) {
         NSArray *separatedPlaces = [place componentsSeparatedByString:@","];
         FlickrPlace *place = [[FlickrPlace alloc] init];
-        place.city = separatedPlaces[0];
-        place.region = separatedPlaces[1];
-        place.country = separatedPlaces[2];
+        place.city = separatedPlaces.firstObject;
+        if (separatedPlaces.count < 3) {
+            place.region = nil;
+        }
+        else {
+            place.region = separatedPlaces[1];
+        }
+        place.country = separatedPlaces.lastObject;
+        place.placeID = idArray[i];
         [parsedPlaces addObject:place];
+        i++;
     }
     
     return [parsedPlaces copy];

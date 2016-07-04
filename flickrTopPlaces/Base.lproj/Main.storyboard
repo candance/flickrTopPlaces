@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -21,11 +22,11 @@
             </objects>
             <point key="canvasLocation" x="-479" y="-56"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Flickr Top Places-->
         <scene sceneID="RO2-rc-lab">
             <objects>
                 <tabBarController id="5BZ-Jl-IS0" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="L0d-R7-5ng"/>
+                    <navigationItem key="navigationItem" title="Flickr Top Places" id="L0d-R7-5ng"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="V4g-vU-mpY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -60,14 +61,14 @@
                                             <rect key="frame" x="15" y="5" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lk7-4a-4Qc">
                                             <rect key="frame" x="15" y="25" width="41" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -80,10 +81,109 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Top Places" id="vv1-un-URo"/>
+                    <connections>
+                        <segue destination="P0C-xc-Gut" kind="show" identifier="Display Photos for Place" id="Lz7-pG-pLn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sct-cy-NHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="977" y="-484"/>
+        </scene>
+        <!--Flickr Photos From PlaceVC-->
+        <scene sceneID="cX0-T5-zvl">
+            <objects>
+                <viewController id="P0C-xc-Gut" customClass="FlickrPhotosFromPlaceVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8yR-Vk-7I0"/>
+                        <viewControllerLayoutGuide type="bottom" id="2X6-tj-XVt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jVm-CQ-Fig">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E2j-43-Wjr">
+                                <rect key="frame" x="0.0" y="4" width="600" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Photo Title Place Cell" rowHeight="100" id="K6o-ps-IEg" customClass="PhotoTitlePlaceCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K6o-ps-IEg" id="FUd-YM-srO">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4u-ry-Dx5">
+                                                    <rect key="frame" x="8" y="9" width="584" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umg-wz-R3m">
+                                                    <rect key="frame" x="8" y="31" width="584" height="59"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="umg-wz-R3m" secondAttribute="trailing" id="CMI-71-oOC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="g4u-ry-Dx5" secondAttribute="trailing" id="CXs-2v-eeh"/>
+                                                <constraint firstItem="umg-wz-R3m" firstAttribute="leading" secondItem="g4u-ry-Dx5" secondAttribute="leading" id="DvW-D0-Ec3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="umg-wz-R3m" secondAttribute="bottom" constant="1" id="RHu-LK-80X"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="g4u-ry-Dx5" secondAttribute="leading" id="cBu-18-B0z"/>
+                                                <constraint firstItem="umg-wz-R3m" firstAttribute="top" secondItem="g4u-ry-Dx5" secondAttribute="bottom" constant="1" id="fOC-zn-tUK"/>
+                                                <constraint firstItem="g4u-ry-Dx5" firstAttribute="top" secondItem="FUd-YM-srO" secondAttribute="topMargin" constant="1" id="fRV-gv-bH0"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="umg-wz-R3m" secondAttribute="leading" id="nn4-Ue-vTn"/>
+                                                <constraint firstItem="umg-wz-R3m" firstAttribute="leading" secondItem="g4u-ry-Dx5" secondAttribute="trailing" constant="-34" id="w13-VY-sV6"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="DvW-D0-Ec3"/>
+                                                    <exclude reference="w13-VY-sV6"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoSubtitle" destination="umg-wz-R3m" id="ZsP-56-Tnb"/>
+                                            <outlet property="photoTitle" destination="g4u-ry-Dx5" id="fj0-Lw-2DF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2X6-tj-XVt" firstAttribute="top" secondItem="E2j-43-Wjr" secondAttribute="bottom" id="Cih-fn-hRh"/>
+                            <constraint firstItem="E2j-43-Wjr" firstAttribute="leading" secondItem="jVm-CQ-Fig" secondAttribute="leadingMargin" constant="-20" id="MGj-vM-LlV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E2j-43-Wjr" secondAttribute="trailing" constant="-20" id="QIZ-zX-ujl"/>
+                            <constraint firstItem="E2j-43-Wjr" firstAttribute="top" secondItem="8yR-Vk-7I0" secondAttribute="bottom" constant="-60" id="xa6-rC-HaE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="E2j-43-Wjr" id="Ngu-7c-9aJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8uc-le-CTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1717" y="-487"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="g1O-3X-lTu">
+            <objects>
+                <viewController id="jj0-Su-FyG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Adp-0f-a3o"/>
+                        <viewControllerLayoutGuide type="bottom" id="7BK-ja-EpB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6fQ-gk-MUF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ol-rG-hi8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2453" y="-487"/>
         </scene>
         <!--Recents-->
         <scene sceneID="ZQ4-sP-fD0">
@@ -105,14 +205,14 @@
                                             <rect key="frame" x="15" y="5" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SYd-Qp-Ky5">
                                             <rect key="frame" x="15" y="25" width="41" height="14"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

@@ -9,8 +9,11 @@
 #import "flickrPlacesTVC.h"
 #import "FlickrFetcher.h"
 #import "FlickrPlace.h"
+#import "FlickrPhotosFromPlaceVC.h"
 
 @interface flickrPlacesTVC ()
+
+@property (strong, nonatomic) NSString *currentlySelectedId;
 
 @end
 
@@ -22,7 +25,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - <UITableViewDataSource>
 
 // return number of sections
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -60,14 +63,31 @@
     return city.country;
 }
 
-/*
+#pragma mark - <UITableViewDelegate>
+
+// table view has been selected at a certain row (or a specific cell has been tapped)
+// indexPath is a 'location'/'address' (but not the memory address) for cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"Display Photos for Place" sender:indexPath];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[NSIndexPath class]]) {
+        if ([segue.identifier isEqualToString:@"Display Photos for Place"]) {
+            if ([segue.destinationViewController isKindOfClass:[FlickrPhotosFromPlaceVC class]]) {
+                FlickrPhotosFromPlaceVC *vc = [segue destinationViewController];
+                // casting sender to be NSIndexPath from id
+                NSIndexPath *indexPath = (NSIndexPath *)sender;
+                NSArray *countryChosen = self.places[indexPath.section];
+                FlickrPlace *cityChosen = countryChosen[indexPath.row];
+                vc.cityID = cityChosen.placeID;
+            }
+        }
+    }
 }
-*/
 
 @end

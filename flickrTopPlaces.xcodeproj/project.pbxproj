@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D49F7441D29EBFF00A27DF6 /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D49F7431D29EBFF00A27DF6 /* ImageVC.m */; };
+		0DA5A8551D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA5A8541D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m */; };
+		0DA5A8581D275CA000E0CC29 /* PhotoTitlePlaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA5A8571D275CA000E0CC29 /* PhotoTitlePlaceCell.m */; };
 		0DF457481D257494002F7BDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF457471D257494002F7BDE /* main.m */; };
 		0DF4574B1D257494002F7BDE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF4574A1D257494002F7BDE /* AppDelegate.m */; };
 		0DF457511D257494002F7BDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DF4574F1D257494002F7BDE /* Main.storyboard */; };
@@ -39,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D49F7421D29EBFF00A27DF6 /* ImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageVC.h; sourceTree = "<group>"; };
+		0D49F7431D29EBFF00A27DF6 /* ImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageVC.m; sourceTree = "<group>"; };
+		0DA5A8531D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhotosFromPlaceVC.h; sourceTree = "<group>"; };
+		0DA5A8541D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhotosFromPlaceVC.m; sourceTree = "<group>"; };
+		0DA5A8561D275CA000E0CC29 /* PhotoTitlePlaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTitlePlaceCell.h; sourceTree = "<group>"; };
+		0DA5A8571D275CA000E0CC29 /* PhotoTitlePlaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTitlePlaceCell.m; sourceTree = "<group>"; };
 		0DF457431D257494002F7BDE /* flickrTopPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flickrTopPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF457471D257494002F7BDE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0DF457491D257494002F7BDE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,6 +128,12 @@
 				0DF457821D257CDA002F7BDE /* flickrPlacesTVC.m */,
 				0DF457841D257E8A002F7BDE /* JustPostedflickrTopPlacesTVC.h */,
 				0DF457851D257E8A002F7BDE /* JustPostedflickrTopPlacesTVC.m */,
+				0DA5A8531D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.h */,
+				0DA5A8541D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m */,
+				0DA5A8561D275CA000E0CC29 /* PhotoTitlePlaceCell.h */,
+				0DA5A8571D275CA000E0CC29 /* PhotoTitlePlaceCell.m */,
+				0D49F7421D29EBFF00A27DF6 /* ImageVC.h */,
+				0D49F7431D29EBFF00A27DF6 /* ImageVC.m */,
 				0DF457931D258146002F7BDE /* Flickr Fetcher */,
 				0DF457551D257494002F7BDE /* Assets.xcassets */,
 				0DF457461D257494002F7BDE /* Supporting Files */,
@@ -306,11 +321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D49F7441D29EBFF00A27DF6 /* ImageVC.m in Sources */,
 				0DF457831D257CDA002F7BDE /* flickrPlacesTVC.m in Sources */,
 				0DF457971D25DFC1002F7BDE /* FlickrPlace.m in Sources */,
 				0DF457921D25812F002F7BDE /* FlickrFetcher.m in Sources */,
+				0DA5A8551D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m in Sources */,
 				0DF4574B1D257494002F7BDE /* AppDelegate.m in Sources */,
 				0DF457541D257494002F7BDE /* flickrTopPlaces.xcdatamodeld in Sources */,
+				0DA5A8581D275CA000E0CC29 /* PhotoTitlePlaceCell.m in Sources */,
 				0DF457861D257E8A002F7BDE /* JustPostedflickrTopPlacesTVC.m in Sources */,
 				0DF457481D257494002F7BDE /* main.m in Sources */,
 			);
@@ -538,6 +556,7 @@
 				0DF457751D257495002F7BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0DF457761D257495002F7BDE /* Build configuration list for PBXNativeTarget "flickrTopPlacesTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +565,7 @@
 				0DF457781D257495002F7BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0DF457791D257495002F7BDE /* Build configuration list for PBXNativeTarget "flickrTopPlacesUITests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +574,7 @@
 				0DF4577B1D257495002F7BDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
