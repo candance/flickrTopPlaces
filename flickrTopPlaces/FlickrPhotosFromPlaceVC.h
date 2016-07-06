@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) id cityID;
 
+@property (strong, nonatomic) NSDictionary *photo;
+
 @property (nonatomic, strong) NSArray *photos; //of flickr photos NSDictionary
+
+-(void)reloadData;
 
 @end

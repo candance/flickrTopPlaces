@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D49F7441D29EBFF00A27DF6 /* ImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D49F7431D29EBFF00A27DF6 /* ImageVC.m */; };
+		0D49F74D1D2C342200A27DF6 /* RecentPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D49F74C1D2C342200A27DF6 /* RecentPhotos.m */; };
+		0D49F7501D2C3A2A00A27DF6 /* RecentPhotosListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D49F74F1D2C3A2A00A27DF6 /* RecentPhotosListVC.m */; };
 		0DA5A8551D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA5A8541D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m */; };
 		0DA5A8581D275CA000E0CC29 /* PhotoTitlePlaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA5A8571D275CA000E0CC29 /* PhotoTitlePlaceCell.m */; };
 		0DF457481D257494002F7BDE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF457471D257494002F7BDE /* main.m */; };
@@ -44,6 +46,10 @@
 /* Begin PBXFileReference section */
 		0D49F7421D29EBFF00A27DF6 /* ImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageVC.h; sourceTree = "<group>"; };
 		0D49F7431D29EBFF00A27DF6 /* ImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageVC.m; sourceTree = "<group>"; };
+		0D49F74B1D2C342200A27DF6 /* RecentPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPhotos.h; sourceTree = "<group>"; };
+		0D49F74C1D2C342200A27DF6 /* RecentPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPhotos.m; sourceTree = "<group>"; };
+		0D49F74E1D2C3A2A00A27DF6 /* RecentPhotosListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPhotosListVC.h; sourceTree = "<group>"; };
+		0D49F74F1D2C3A2A00A27DF6 /* RecentPhotosListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPhotosListVC.m; sourceTree = "<group>"; };
 		0DA5A8531D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrPhotosFromPlaceVC.h; sourceTree = "<group>"; };
 		0DA5A8541D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrPhotosFromPlaceVC.m; sourceTree = "<group>"; };
 		0DA5A8561D275CA000E0CC29 /* PhotoTitlePlaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTitlePlaceCell.h; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 				0DF457851D257E8A002F7BDE /* JustPostedflickrTopPlacesTVC.m */,
 				0DA5A8531D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.h */,
 				0DA5A8541D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m */,
+				0D49F74E1D2C3A2A00A27DF6 /* RecentPhotosListVC.h */,
+				0D49F74F1D2C3A2A00A27DF6 /* RecentPhotosListVC.m */,
 				0DA5A8561D275CA000E0CC29 /* PhotoTitlePlaceCell.h */,
 				0DA5A8571D275CA000E0CC29 /* PhotoTitlePlaceCell.m */,
 				0D49F7421D29EBFF00A27DF6 /* ImageVC.h */,
@@ -187,6 +195,8 @@
 			children = (
 				0DF457951D25DFC1002F7BDE /* FlickrPlace.h */,
 				0DF457961D25DFC1002F7BDE /* FlickrPlace.m */,
+				0D49F74B1D2C342200A27DF6 /* RecentPhotos.h */,
+				0D49F74C1D2C342200A27DF6 /* RecentPhotos.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -321,10 +331,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D49F74D1D2C342200A27DF6 /* RecentPhotos.m in Sources */,
 				0D49F7441D29EBFF00A27DF6 /* ImageVC.m in Sources */,
 				0DF457831D257CDA002F7BDE /* flickrPlacesTVC.m in Sources */,
 				0DF457971D25DFC1002F7BDE /* FlickrPlace.m in Sources */,
 				0DF457921D25812F002F7BDE /* FlickrFetcher.m in Sources */,
+				0D49F7501D2C3A2A00A27DF6 /* RecentPhotosListVC.m in Sources */,
 				0DA5A8551D27103D00E0CC29 /* FlickrPhotosFromPlaceVC.m in Sources */,
 				0DF4574B1D257494002F7BDE /* AppDelegate.m in Sources */,
 				0DF457541D257494002F7BDE /* flickrTopPlaces.xcdatamodeld in Sources */,

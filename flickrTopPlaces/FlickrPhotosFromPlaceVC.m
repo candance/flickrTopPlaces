@@ -10,6 +10,8 @@
 #import "FlickrFetcher.h"
 #import "FlickrPlace.h"
 #import "PhotoTitlePlaceCell.h"
+#import "ImageVC.h"
+#import "RecentPhotos.h"
 
 // need to put <...> because this is subclass of UIViewController, which doesn't subscribe to the datasource and delegate protocol, unlike UITableViewController in flickrPlacesTVC
 @interface FlickrPhotosFromPlaceVC () <UITableViewDataSource, UITableViewDelegate>
@@ -32,6 +34,10 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
+- (void)reloadData {
+    [self.tableView reloadData];
+}
+
 - (void)fetchPhotos {
     
     NSURL *url = [FlickrFetcher URLforPhotosInPlace:self.cityID maxResults:50];
@@ -43,7 +49,7 @@
                                                                   options:0
                                                                     error:NULL];
     
-    // NSLog(@"Places Results:%@", photosResults);
+    // NSLog(@"Photos Results:%@", photosResults);
     
     self.photos = [NSArray new];
     
@@ -61,29 +67,55 @@
     PhotoTitlePlaceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    NSArray *photo = self.photos[indexPath.row];
-    if ([photo valueForKeyPath:FLICKR_PHOTO_TITLE]) {
-        cell.photoTitle.text = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    NSDictionary *photo = self.photos[indexPath.row];
+    NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+    NSString *photoTitle = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    NSString *photoDescription = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    if ([[photoTitle stringByTrimmingCharactersInSet:set] length]) {
+        cell.photoTitle.text = photoTitle;
     }
-    else if ([photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION]) {
-        cell.photoTitle.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    else if ([[photoDescription stringByTrimmingCharactersInSet:set] length]) {
+        cell.photoTitle.text = photoDescription;
     }
     else {
         cell.photoTitle.text = @"Unknown";
     }
-    cell.photoSubtitle.text = [photo valueForKeyPath:FLICKR_PHOTO_DESCRIPTION];
+    cell.photoSubtitle.text = photoDescription;
     
     return cell;
 }
 
-/*
+#pragma mark - <UITableViewDelegate>
+
+// table view has been selected at a certain row (or a specific cell has been tapped)
+// indexPath is a 'location'/'address' (but not the memory address) for cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"Display Chosen Photo" sender:indexPath];
+}
+
 #pragma mark - Navigation
+
+- (void)prepareImageViewController:(ImageVC *)ivc toDisplayPhoto:(NSDictionary *)photo {
+    ivc.imageURL = [FlickrFetcher URLforPhoto:photo format:FlickrPhotoFormatLarge];
+    ivc.title = [photo valueForKeyPath:FLICKR_PHOTO_TITLE];
+    NSLog(@"Image Title:%@",ivc.title);
+    [RecentPhotos addPhotoToRecents:photo];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[NSIndexPath class]]) {
+        if ([segue.identifier isEqualToString:@"Display Chosen Photo"]) {
+            if ([segue.destinationViewController isKindOfClass:[ImageVC class]]) {
+                // casting sender to be NSIndexPath from id
+                NSIndexPath *indexPath = (NSIndexPath *)sender;
+                NSDictionary *photo = self.photos[indexPath.row];
+                [self prepareImageViewController:[segue destinationViewController]
+                                  toDisplayPhoto:photo];
+            }
+        }
+    }
 }
-*/
 
 @end

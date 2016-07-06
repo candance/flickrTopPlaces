@@ -33,7 +33,7 @@
                                                                         options:0
                                                                           error:NULL];
     
-    // NSLog(@"Places Results:%@", placesResults);
+//    NSLog(@"Places Results:%@", placesResults);
     
     NSDictionary *places = [placesResults valueForKeyPath:FLICKR_RESULTS_PLACES];
 
