@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) NSArray *photos; //of flickr photos NSDictionary
 
--(void)reloadData;
+- (void)reloadData;
 
 @end

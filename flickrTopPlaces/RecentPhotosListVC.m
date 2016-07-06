@@ -21,7 +21,4 @@
     [self reloadData];
 }
 
-
-//PROBLEM: VIEW NOT UPDATING UNLESS SCROLL...so stop NSUserDefaults from updating until Recents VC reloads?
-
 @end

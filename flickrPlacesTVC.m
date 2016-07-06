@@ -19,6 +19,8 @@
 
 @implementation flickrPlacesTVC
 
+// gets called every time self.places =
+// uses _places instead of self.places because _places does not go through setPlaces, avoiding infinite loop
 - (void)setPlaces:(NSArray *)places {
     _places = places;
     // reload places everytime because model drives the UI

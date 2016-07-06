@@ -28,8 +28,10 @@
     self.tableView.dataSource = self;
     // telling tableView you're the delegate for the UITableViewDelegate protocol
     self.tableView.delegate = self;
-    [self.tableView reloadData];
-    [self fetchPhotos];
+    // so that tableView doesn't reload if it's RecentPhotosListVC
+    if ([self.class isEqual:[FlickrPhotosFromPlaceVC class]]) {
+        [self fetchPhotos];
+    }
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
@@ -42,18 +44,24 @@
     
     NSURL *url = [FlickrFetcher URLforPhotosInPlace:self.cityID maxResults:50];
     
-#warning BLOCK MAIN THREAD
-    
-    NSData *jsonResults = [NSData dataWithContentsOfURL:url];
-    NSDictionary *photosResults = [NSJSONSerialization JSONObjectWithData:jsonResults
-                                                                  options:0
-                                                                    error:NULL];
-    
-    // NSLog(@"Photos Results:%@", photosResults);
-    
-    self.photos = [NSArray new];
-    
-    self.photos = [photosResults valueForKeyPath:FLICKR_RESULTS_PHOTOS];
+    // unblocking main queue through multithreading
+    dispatch_queue_t fetchQ = dispatch_queue_create("flickr places fetcher", NULL);
+    dispatch_sync(fetchQ, ^{
+        NSData *jsonResults = [NSData dataWithContentsOfURL:url];
+        NSDictionary *photosResults = [NSJSONSerialization JSONObjectWithData:jsonResults
+                                                                      options:0
+                                                                        error:NULL];
+        
+        // NSLog(@"Photos Results:%@", photosResults);
+        
+        NSArray *photos = [photosResults valueForKeyPath:FLICKR_RESULTS_PHOTOS];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.photos = photos;
+            // reload photos everytime because model drives the UI
+            [self reloadData];
+        });
+    });
 }
 
 #pragma mark - <UITableViewDataSource>

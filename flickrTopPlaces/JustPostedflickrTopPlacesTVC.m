@@ -25,23 +25,25 @@
     
     NSURL *url = [FlickrFetcher URLforTopPlaces];
     
-#warning BLOCK MAIN THREAD
-    
-    //flickr returns list of places in json format but we need to turn it into NSDictionary array.
-    NSData *jsonResults = [NSData dataWithContentsOfURL:url]; // this will block main queue tho
-    NSDictionary *placesResults = [NSJSONSerialization JSONObjectWithData:jsonResults
-                                                                        options:0
-                                                                          error:NULL];
-    
-//    NSLog(@"Places Results:%@", placesResults);
-    
-    NSDictionary *places = [placesResults valueForKeyPath:FLICKR_RESULTS_PLACES];
+    // unblocking main queue through multithreading
+    dispatch_queue_t fetchQ = dispatch_queue_create("flickr places fetcher", NULL);
+    dispatch_sync(fetchQ, ^{
+        //flickr returns list of places in json format but we need to turn it into NSDictionary array.
+        NSData *jsonResults = [NSData dataWithContentsOfURL:url];
+        NSDictionary *placesResults = [NSJSONSerialization JSONObjectWithData:jsonResults
+                                                                      options:0
+                                                                        error:NULL];
+        //    NSLog(@"Places Results:%@", placesResults);
+        NSDictionary *places = [placesResults valueForKeyPath:FLICKR_RESULTS_PLACES];
+        
+        NSArray *placesFullNames = [places valueForKey:FLICKR_PLACE_NAME];
+        
+        NSArray *placesID = [places valueForKey:FLICKR_PLACE_ID];
 
-    NSArray *placesFullNames = [places valueForKey:FLICKR_PLACE_NAME];
-    
-    NSArray *placesID = [places valueForKey:FLICKR_PLACE_ID];
-    
-    self.places = [self createArrayForEachCountry:[self createFlickrPlacesArrayWithStringArray:placesFullNames withPlaceId:placesID]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.places = [self createArrayForEachCountry:[self createFlickrPlacesArrayWithStringArray:placesFullNames withPlaceId:placesID]];
+        });
+    });
 }
 
 - (NSArray *)createFlickrPlacesArrayWithStringArray:(NSArray *)stringArray withPlaceId:(NSArray *)idArray {
